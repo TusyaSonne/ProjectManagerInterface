@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все менеджеры</title>
+</head>
+
+<body>
+
+<div th:each="manager : ${managers}">
+    <a th:href="@{/managers/{id}(id=${manager.getId()})}"
+    th:text="${manager.getFirst_name() + ' ' + manager.getLast_name() + ' ' + manager.getMiddle_name()}">Менеджер</a>
+</div>
+
+<hr />
+<a href="/managers/new">Добавить нового менеджера</a>
+
+<hr />
+
+<!-- Добавление кнопок для перехода к другим разделам -->
+<div>
+    <a href="/specialists">
+        <button>Перейти к специалистам</button>
+    </a>
+
+    <a href="/tasks">
+        <button>Перейти к задачам</button>
+    </a>
+</div>
+
+</body>
+</html>

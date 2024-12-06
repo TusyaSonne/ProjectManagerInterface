@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>О специалисте</title>
+</head>
+<body>
+
+<p th:text="${'Имя: ' + specialist.getFirst_name()}"></p>
+<p th:text="${'Фамилия: ' + specialist.getLast_name()}"></p>
+<p th:text="${'Отчество: ' + specialist.getMiddle_name()}"></p>
+<p th:text="${'Специализация: ' + specialist.getSpecialization()}"></p>
+<p th:text="${'Почта: ' + specialist.getEmail()}"></p>
+
+<a th:href="@{/specialists/{id}/edit(id=${specialist.getId()})}">Изменить специалиста</a>
+<br />
+<hr />
+
+<div th:if="${tasks.isEmpty()}">
+    <a>Специалисту ещё не назначено задач</a>
+</div>
+
+<div th:if="${!tasks.isEmpty()}">
+    <a>Задачи:</a>
+    <div th:each="task : ${tasks}">
+        <a th:href="@{/tasks/{id}(id=${task.getId()})}"
+           th:text="${task.getName()}">Задача</a>
+    </div>
+</div>
+
+<br />
+
+<a th:href="@{/specialists/{id}/add-distribution(id=${specialist.getId()})}">Редактировать задачи</a>
+
+<hr />
+
+<form th:method="DELETE" th:action="@{/specialists/{id}(id=${specialist.getId()})}">
+    <input type="submit" value="Удалить">
+</form>
+
+</body>
+</html>

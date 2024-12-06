@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>О задаче</title>
+</head>
+<body>
+
+<p th:text="${'Название: ' + task.getName()}"></p>
+<p th:text="${'Описание: ' + task.getDescription()}"></p>
+<p th:text="${'Срок: ' + task.getDeadline()}"></p>
+<a>Менеджер задачи: </a>
+<a th:href="@{/managers/{id}(id=${manager.getId()})}" th:text="${manager.getLast_name() + ' ' + manager.getFirst_name() + ' ' + manager.getMiddle_name()}"></a>
+<br />
+
+
+<div th:if="${specialists.isEmpty()}">
+    <hr />
+    <a>Задаче ещё не присвоены специалисты.</a>
+
+    <hr />
+</div>
+
+<div th:if="${!specialists.isEmpty()}">
+    <hr />
+    <a>Специалисты, отвечающие за данную задачу:</a>
+    <div th:each="specialist : ${specialists}">
+        <a th:href="@{/specialists/{id}(id=${specialist.getId()})}" th:text="${specialist.getLast_name() + ' ' + specialist.getFirst_name() + ' ' + specialist.getMiddle_name() + ' - ' + specialist.getSpecialization()}">Специалист</a>
+        <br />
+    </div>
+    <hr />
+</div>
+
+<br />
+
+<a th:href="@{/tasks/{id}/edit(id=${task.getId()})}">Изменить</a>
+
+<form th:method="DELETE" th:action="@{/tasks/{id}(id=${task.getId()})}">
+    <input type="submit" value="Удалить">
+</form>
+
+</body>
+</html>

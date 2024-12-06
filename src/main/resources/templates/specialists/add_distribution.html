@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи специалиста</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/specialists/{id}/add-distribution(id=${specialist.getId()})}">
+    <label for="tasks">Выберите задачи:</label>
+    <select id="tasks" name="taskIds" multiple>
+        <option th:each="task : ${tasks}"
+                th:value="${task.getId()}"
+                th:text="${task.getName()}"
+                th:selected="${assignedTaskIds.contains(task.getId())}"></option>
+    </select>
+    <br />
+
+    <input type="submit" value="Обновить">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все специалисты</title>
+</head>
+<body>
+
+<div th:each="specialist : ${specialists}">
+    <a th:href="@{/specialists/{id}(id=${specialist.getId()})}"
+       th:text="${specialist.getFirst_name() + ' ' + specialist.getLast_name() + ' ' + specialist.getMiddle_name()}">Специалист</a>
+</div>
+
+<hr />
+<a href="/specialists/new">Добавить нового специалиста</a>
+
+<hr />
+<div>
+    <a href="/tasks">
+        <button>Перейти к задачам</button>
+    </a>
+    <a href="/managers">
+        <button>Перейти к менеджерам</button>
+    </a>
+</div>
+
+</body>
+</html>

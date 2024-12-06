@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить специалиста</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/specialists}" th:object="${specialist}">
+    <label for="first_name">Введите имя:</label>
+    <input type="text" th:field="*{first_name}" id="first_name">
+    <div style="color:red" th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}">First Name Error</div>
+    <br />
+
+    <label for="last_name">Введите фамилию:</label>
+    <input type="text" th:field="*{last_name}" id="last_name">
+    <div style="color:red" th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}">Last Name Error</div>
+    <br />
+
+    <label for="middle_name">Введите отчество:</label>
+    <input type="text" th:field="*{middle_name}" id="middle_name">
+    <div style="color:red" th:if="${#fields.hasErrors('middle_name')}" th:errors="*{middle_name}">Middle Name Error</div>
+    <br />
+
+    <label for="specialization">Введите специализацию:</label>
+    <input type="text" th:field="*{specialization}" id="specialization">
+    <div style="color:red" th:if="${#fields.hasErrors('specialization')}" th:errors="*{specialization}">Specialization Error</div>
+    <br />
+
+    <label for="email">Введите почту:</label>
+    <input type="text" th:field="*{email}" id="email">
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <br />
+
+    <input type="submit" value="Создать">
+</form>
+
+</body>
+</html>

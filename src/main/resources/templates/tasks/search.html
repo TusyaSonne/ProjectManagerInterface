@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск задачи</title>
+</head>
+<body>
+<h1>Поиск задачи</h1>
+<form th:action="@{/tasks/results}" method="get">
+    <!-- Поле для ввода названия задачи -->
+    <label for="name">Поиск по названию:</label>
+    <input type="text" id="name" name="name">
+    <br><br>
+
+    <!-- Выпадающий список для выбора менеджера -->
+    <label for="managerId">Выберите менеджера задачи:</label>
+    <select id="managerId" name="managerId">
+        <option value="">-- Менеджер --</option>
+        <option th:each="manager : ${managers}" th:value="${manager.id}"
+                th:text="${manager.last_name + ' ' + manager.last_name + ' ' + manager.middle_name}">
+        </option>
+    </select>
+    <br><br>
+
+    <!-- Выпадающий список для выбора специалиста -->
+    <label for="specialistId">Выберите специалиста задачи:</label>
+    <select id="specialistId" name="specialistId">
+        <option value="">-- Специалист --</option>
+        <option th:each="specialist : ${specialists}"
+                th:value="${specialist.id}"
+                th:text="${specialist.last_name + ' ' + specialist.first_name + ' ' + specialist.middle_name}">
+        </option>
+    </select>
+    <br><br>
+
+    <button type="submit">Искать!</button>
+</form>
+</body>
+</html>

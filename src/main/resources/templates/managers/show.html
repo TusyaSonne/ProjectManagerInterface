@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>О менеджере</title>
+</head>
+<body>
+
+<p th:text="${ 'Имя: ' + manager.getFirst_name()}"></p>
+<p th:text="${ 'Фамилия: ' + manager.getLast_name()}"></p>
+<p th:text="${ 'Отчество: ' + manager.getMiddle_name()}"></p>
+<p th:text="${ 'Почта: ' + manager.getEmail()}"></p>
+
+<br />
+
+<div th:if="${tasks.isEmpty()}">
+    <hr />
+    <a>Менеджер ещё не ответственнен ни за одну из задач</a>
+    <hr />
+</div>
+
+<div th:if="${!tasks.isEmpty()}">
+    <a th:text="'Количество задач менеджера: ' + ${tasksCount}"> </a>
+    <hr />
+    <a>Задачи:</a>
+    <div th:each="task : ${tasks}">
+        <a th:href="@{/tasks/{id}(id=${task.getId()})}" th:text="${task.getName()}">Задача</a>
+        <br />
+    </div>
+    <hr />
+</div>
+
+<a th:href="@{/managers/{id}/edit(id=${manager.getId()})}">Изменить</a>
+
+<form th:method="DELETE" th:action="@{/managers/{id}(id=${manager.getId()})}">
+    <input type="submit" value="Удалить">
+</form>
+
+</body>
+</html>

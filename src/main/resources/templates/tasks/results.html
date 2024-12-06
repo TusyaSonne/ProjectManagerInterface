@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результат поиска</title>
+</head>
+<body>
+<h1>Результат поиска</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Срок сдачи</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="task : ${tasks}">
+        <tr>
+            <td th:text="${task.id}"></td>
+            <td th:text="${task.name}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.deadline}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+<a th:href="@{/tasks/search}">Назад к поиску</a>
+</body>
+</html>
